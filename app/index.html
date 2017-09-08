@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MetaCoin - Truffle Webpack Demo w/ Frontend</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <script src="./app.js"></script>
+</head>
+<body>
+  <h1>Splitter DApp</h1>
+  <h3>Alice have <span class="black"><span id="alice"></span> Ether</span></h3>
+  <h3>Bob have <span class="black"><span id="bob"></span> Ether</span></h3>
+  <h3>Carol have <span class="black"><span id="carol"></span> Ether</span></h3>
+  <br>
+  <h3>Contact has <span class="black"><span id="balance"></span> Ether</span></h3>
+
+  <h1>Send Ether</h1>
+  <br>
+  Choose an Account:<br>
+  <select id="selectedAccount" style="width: 100%">
+    <option value="0">Alice</option>
+    <option value="1">Bob</option>
+    <option value="2">Carol</option>
+  </select>
+  <br>
+  <br><label for="amount">Amount:</label>
+  <br>
+  <input style="width: 100%" type="text" id="amount" placeholder="Amount in Ether"></input>
+  <br><br><button id="send" onclick="App.split()">Split</button>
+  <br><br>
+  <span id="status"></span>
+  <br>
+  <span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>
+  <br><br><button id="kill" onclick="App.kill()">Kill</button>
+</body>
+</html>
