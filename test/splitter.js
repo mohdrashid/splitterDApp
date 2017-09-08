@@ -11,7 +11,6 @@ if (typeof web3 !== 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
 contract("Splitter",(accounts)=>{
-    console.log(accounts);
 
     let contract;
     const alice=accounts[0];
@@ -24,21 +23,15 @@ contract("Splitter",(accounts)=>{
         });
     });
 
-    it("should send 10/2 coins each to bob and carol", function() {
-        const amount=10;
-        let bobBalance=web3.fromWei(web3.eth.getBalance(bob));
-        let carolBalance=web3.fromWei(web3.eth.getBalance(carol));
-        console.log(bobBalance);
-
-        return contract.split({from:alice,value:web3.toWei(amount)}).then(()=>{
-            let bobBalanceAfter=web3.fromWei(web3.eth.getBalance(bob));
-            let carolBalanceAfter=web3.fromWei(web3.eth.getBalance(carol));
-            console.log(bobBalanceAfter);
-            console.log((bobBalanceAfter===(bobBalanceAfter+amount/2)))
-
-            assert.strictEqual((bobBalanceAfter===(bobBalanceAfter+amount/2)),true,"Split function did not work for bob");
-            assert.strictEqual((carolBalanceAfter===carolBalanceAfter+amount/2),true,"Split function did not work for Carol");
-
+    it("should send 1/2 coins each to bob and carol", function() {
+        const amount=web3.toWei(1);
+        let bobBalance=web3.eth.getBalance(bob);
+        let carolBalance=web3.eth.getBalance(carol);
+        return contract.split({from:alice,value:amount}).then(()=>{
+            let bobBalanceAfter=web3.eth.getBalance(bob);
+            let carolBalanceAfter=web3.eth.getBalance(carol);
+            assert.strictEqual(bobBalanceAfter.equals(bobBalance.plus(amount/2)),true,"Split function did not work for bob");
+            assert.strictEqual(carolBalanceAfter.equals(carolBalance.plus(amount/2)),true,"Split function did not work for Carol");
         })
     });
 });
