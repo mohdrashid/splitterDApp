@@ -21,10 +21,24 @@
     <option value="1">Bob</option>
     <option value="2">Carol</option>
   </select>
+  <br><br>
+  Receiver 1:<br>
+  <select id="receiver1" style="width: 100%">
+    <option value="0">Alice</option>
+    <option value="1">Bob</option>
+    <option value="2">Carol</option>
+  </select>
+  <br><br>
+  Receiver 2:<br>
+  <select id="receiver2" style="width: 100%">
+    <option value="0">Alice</option>
+    <option value="1">Bob</option>
+    <option value="2">Carol</option>
+  </select>
   <br>
   <br><label for="amount">Amount:</label>
   <br>
-  <input style="width: 100%" type="text" id="amount" placeholder="Amount in Ether"></input>
+  <input type="text" id="amount" placeholder="Amount in Ether"></input>
   <br><br><button id="send" onclick="App.split()">Split</button>
   <br><br>
   <span id="status"></span>

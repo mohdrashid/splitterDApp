@@ -76,15 +76,17 @@ window.App = {
     var self = this
 
     var amount = parseInt(document.getElementById('amount').value)
-    var receiver = parseInt(document.getElementById('selectedAccount').value)||0;
+    var selectedAccount = parseInt(document.getElementById('selectedAccount').value)||0;
+    var receiver1=parseInt(document.getElementById('receiver1').value)||0;
+    var receiver2=parseInt(document.getElementById('receiver2').value)||0;
+
     this.setStatus('Initiating transaction... (please wait)')
 
     var meta;
     Splitter.deployed().then(function (instance) {
-      meta = instance
-      return meta.split({ from: accounts[receiver], value: web3.toWei(amount)});
+      meta = instance;
+      return meta.split(accounts[receiver1],accounts[receiver2],{ from: accounts[selectedAccount], value: web3.toWei(amount)});
     }).then(function (state) {
-      console.log(state);
       self.setStatus('Transaction complete!')
       self.refreshBalance()
     }).catch(function (e) {
